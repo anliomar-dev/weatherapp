@@ -1,10 +1,14 @@
+import {useContext} from "react";
+import {ThemeContext} from "../hooks/themeContext.jsx";
 function ThemeController() {
+	const { toggleTheme } = useContext(ThemeContext);
 	return (
 	  <label className="grid cursor-pointer place-items-center">
 		  <input
 			type="checkbox"
 			value="synthwave"
-			className="toggle theme-controller bg-base-content col-span-2 col-start-1 row-start-1"/>
+			onChange={toggleTheme}
+			className={`toggle theme-controller bg-base-content col-span-2 col-start-1 row-start-1`}/>
 		  <svg
 			className="stroke-base-100 fill-base-100 col-start-1 row-start-1"
 			xmlns="http://www.w3.org/2000/svg"

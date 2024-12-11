@@ -2,10 +2,12 @@ import SearchBar from "./searchbar.jsx";
 import InputDate from "./inputDate.jsx";
 import ThemeController from "./themeController.jsx";
 import {MapPinOff, MapPinCheck, ThermometerSun} from "lucide-react";
-
+import {ThemeContext} from "../hooks/themeContext.jsx";
+import {useContext} from "react";
 function Navbar() {
+	const {darkMode} = useContext(ThemeContext);
 	return (
-	  <div className="navbar bg-base-100">
+	  <div className={`navbar ${darkMode ? 'bg-black': 'bg-base-100'}`}>
 		  <div className="flex-1 gap-4">
 			  <SearchBar/>
 			  <InputDate/>
