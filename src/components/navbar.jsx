@@ -1,5 +1,4 @@
 import SearchBar from "./searchbar.jsx";
-import InputDate from "./inputDate.jsx";
 import ThemeController from "./themeController.jsx";
 import {MapPinOff, MapPinCheck} from "lucide-react";
 import {ThemeContext} from "../hooks/themeContext.jsx";
@@ -12,7 +11,6 @@ function Navbar() {
 	  <div className={`navbar border rounded-2xl px-5 ${darkMode ? 'bg-black': 'bg-base-100'}`}>
 		  <div className="flex-1 gap-4">
 			  <SearchBar/>
-			  <InputDate/>
 			  <div>
 				  <MapPinOff className="hover:cursor-pointer" />
 			  </div>
