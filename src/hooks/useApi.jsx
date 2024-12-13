@@ -12,7 +12,8 @@ function useApi(lat, lon, unit) {
 	useEffect(() => {
 		if (coordinates.lat && coordinates.lon) {
 			setLoading(true);
-			const url = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${appid}&units=${unit}`;
+			const url = `https://api.openweathermap.org/data/2.5/
+			weather?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${appid}&units=${unit}`;
 
 			fetch(url)
 			  .then(response => response.json())

@@ -1,10 +1,12 @@
 import {Globe} from "lucide-react";
 import {useContext, useState, useRef} from "react";
 import {LocationContext} from "../hooks/locationProvider.jsx";
+import {ThemeContext} from "../hooks/themeContext.jsx";
 function SearchBar() {
 	const { changeCity } = useContext(LocationContext);
 	const [inputCity, setInputCity] = useState("");
 	const searchBarRef = useRef();
+	const {darkMode} = useContext(ThemeContext);
 	const handleCityChange = () => {
 		changeCity(inputCity);  // Change city based on input
 		searchBarRef.current.value = ""; // Vide l'input après le changement
@@ -13,12 +15,12 @@ function SearchBar() {
 
 	return (
 	  <>
-		  <label className="input input-bordered flex items-center gap-2">
-			  <Globe />
+		  <label className={`input flex items-center gap-2 ${darkMode ? 'bg-dark-input': 'bg-input'}`}>
+			  <Globe className={`${darkMode ? 'text-dark-foreground' : 'text-foreground'}`} />
 			  <input
 			    ref={searchBarRef}
 				type="text"
-				className="grow border-border"
+				className={``}
 				placeholder="Enter city"
 				value={inputCity}
 				onChange={

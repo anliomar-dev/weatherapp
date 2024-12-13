@@ -1,16 +1,26 @@
-import { useContext, useEffect } from "react";
-import { UnitContext } from "../hooks/unitProvider.jsx";
+import {useContext, useEffect, useState} from "react";
 import useApi from "../hooks/useApi.jsx";
+
 import { LocationContext } from "../hooks/locationProvider.jsx";
-import { getCityCordinates } from "../../utils.js";
+import {ThemeContext} from "../hooks/themeContext.jsx";
+import { UnitContext } from "../hooks/unitProvider.jsx";
+
 import WeatherDetails from "./weatherDetails.jsx";
-import {MapPinCheck} from "lucide-react"
+import WeatherMainInfos from "./WeatherMainInfos.jsx";
+import WeatherCardHeader from "./WeatherCardHeader.jsx";
+import Alert from "./alert.jsx";
+
 import {getCityTime} from "../../utils.js";
+import { getCityCordinates } from "../../utils.js";
+
+
 
 function CurrentWeatherCard() {
 	const { unit } = useContext(UnitContext);
 	const { city } = useContext(LocationContext);
 	const { weatherData, loading, coordinates, setCoordinates } = useApi(null, null, unit);
+	const {darkMode} = useContext(ThemeContext);
+	const [isCityExist, setIsCityExist] = useState(coordinates.lat && coordinates.lon);
 
 	useEffect(() => {
 		if (city) {
@@ -19,6 +29,9 @@ function CurrentWeatherCard() {
 					const data = await getCityCordinates(city);
 					if(data.lat && data.lon) {
 						setCoordinates({ lat: data.lat, lon: data.lon, unit });
+						setIsCityExist(true);
+					}else{
+						setIsCityExist(false);
 					}
 				} catch (err) {
 					console.error("Error fetching coordinates:", err);
@@ -26,56 +39,36 @@ function CurrentWeatherCard() {
 			};
 			fetchCoordinates();
 		}
-	}, [city, setCoordinates, coordinates.lat, coordinates.lon, unit]);
+	}, [city, setCoordinates, coordinates.lat, coordinates.lon, unit, isCityExist]);
 
 	// Handle case where city is undefined, null or empty
 	if (!city) {
-		return (
-		  <div role="alert" className="alert flex justify-center p-5 mt-6">
-			  <span className="text-xl">Veuillez specifier une ville!</span>
-		  </div>
-		);
+		return(
+		  <Alert darkMode={darkMode} message={`Veuillez specifier une ville!`} />
+		  )
 	}
-
-	if (!weatherData) {
-		return (
-		  <div role="alert" className="alert flex justify-center p-5 mt-6">
-			  <span className="text-xl">Ville introuvable !</span>
-		  </div>
-		);
+	// handle case city does not exist
+	if (!isCityExist) {
+		return(
+		  <Alert darkMode={darkMode} message={`Ville introuvable !`} />
+		)
 	}
 
 	return (
-	  <div className="w-[800px] mt-3 rounded-lg shadow-sm p-5 bg-card dark:bg-dark-card">
+	  <div className={`w-[800px] mt-3 rounded-lg shadow-sm p-5 ${darkMode ? 'bg-dark-card': 'bg-card'}`}>
 		  {!loading ? (
 		    <div className="currentWeatherCard">
-			    <div className="flex justify-between items-start w-full px-6 py-2">
-				    <div className="flex flex-col">
-					    <p className="text-2xl">Current weather</p>
-					    <p className="text-lg font-medium">
-						    {getCityTime(weatherData?.timezone)}
-					    </p>
-				    </div>
-				    <div className="self-start flex items-center gap-2">
-					    <MapPinCheck/>
-					    <p className="text-2xl">{city.charAt(0).toUpperCase() + city.slice(1)}</p>
-				    </div>
-			    </div>
-			    <div className="flex gap-6 items-center py-5">
-				    <img src={`http://openweathermap.org/img/wn/${weatherData?.weather[0]?.icon}@2x.png`}
-				         alt="weather"/>
-				    <div className="flex align-top">
-					    <span className="text-5xl">{weatherData?.main?.temp ?? "N/A"}</span>
-					    <span className="text-2xl">{unit === "metric" ? "°C" : "°F"}</span>
-				    </div>
-				    <div className="flex flex-col">
-						<span>
-							<p className="text-xl font-medium">{weatherData?.weather[0]?.description}</p>
-						</span>
-					    <span
-						  className="text-lg">feels like {weatherData?.main?.feels_like ?? "N/A"} {unit === "metric" ? "°C" : "°F"}</span>
-				    </div>
-			    </div>
+			    <WeatherCardHeader
+			        timezone={getCityTime(weatherData?.timezone)}
+			        city={city.charAt(0).toUpperCase() + city.slice(1)}
+			    />
+			    <WeatherMainInfos
+			      unit={unit}
+			      feels_like={weatherData?.feels_like ?? "N/A"}
+			      description={weatherData?.weather[0]?.description ?? "N/A"}
+			      tempeture={weatherData?.main?.temp ?? "N/A"}
+			      weatherIcon={weatherData?.weather[0]?.icon}
+			    />
 			    {weatherData && weatherData.wind && (
 				  <WeatherDetails
 				    city={city}
