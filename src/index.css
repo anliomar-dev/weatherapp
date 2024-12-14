@@ -17,3 +17,31 @@
     background-position: center center;
     backdrop-filter: brightness(70%);
 }
+
+.map{
+    z-index: -1;
+}
+
+.weather-card{
+    z-index: -1;
+}
+
+@media  screen and (max-width: 768px) {
+    .search-bar, .search-button{
+        display: none;
+    }
+}
+
+.navbar{
+    z-index: 2000 !important;
+}
+
+.menuSmallScreen{
+    z-index: 3000 !important;
+}
+
+@media screen and (min-width: 768px) {
+    .burger-icon{
+        display: none;
+    }
+}

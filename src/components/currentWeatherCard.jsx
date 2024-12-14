@@ -11,6 +11,7 @@ import WeatherCardHeader from "./WeatherCardHeader.jsx";
 import Alert from "./alert.jsx";
 
 import { getCityCordinates } from "../../utils.js";
+import WeatherMap from "./WeatherMap.jsx";
 
 
 
@@ -54,36 +55,40 @@ function CurrentWeatherCard() {
 	}
 
 	return (
-	  <div className={`lg:w-[800px] w-full rounded-lg p-5 bg-transparent backdrop-blur-lg shadow-lg ${darkMode ? '': ''}`}>
-		  {!loading ? (
-			  <div className="currentWeatherCard">
-				  <WeatherCardHeader
-				    timezone={weatherData?.timezone}
-				    city={city.charAt(0).toUpperCase() + city.slice(1)}
-				  />
-				  <WeatherMainInfos
-				    unit={unit}
-				    feels_like={weatherData?.main?.feels_like ?? "N/A"}
-				    description={weatherData?.weather[0]?.description ?? "N/A"}
-				    tempeture={weatherData?.main?.temp ?? "N/A"}
-				    weatherIcon={weatherData?.weather[0]?.icon}
-				  />
-				  {weatherData && weatherData.wind && (
-				    <WeatherDetails
-					  city={city}
-					  wind={unit === "metric" ? `${(weatherData.wind.speed * 3.6).toFixed(2)}` : `${weatherData.wind.speed}`}
-					  windUnit={unit === "metric" ? "Km/h" : "mph"}
-					  humidity={weatherData.main.humidity}
-					  visibility={(weatherData.visibility / 1000).toFixed(1)}
-					  pressure={weatherData.main.pressure}
-				    />
-				  )}
-			  </div>
-		    ) :
-		    <div className="flex justify-center items-center py-6">
-			    <span className="loading loading-ring loading-lg bg-customPrimary"></span>
-		    </div>
-		  }
+	  <div className="flex flex-col lg:flex-row gap-4 pt-6">
+		  <div
+			className={`lg:w-[800px] w-full weather-card rounded-lg p-5 bg-transparent backdrop-blur-lg shadow-lg ${darkMode ? '' : ''}`}>
+			  {!loading ? (
+				  <div className="currentWeatherCard">
+					  <WeatherCardHeader
+						timezone={weatherData?.timezone}
+						city={city.charAt(0).toUpperCase() + city.slice(1)}
+					  />
+					  <WeatherMainInfos
+						unit={unit}
+						feels_like={weatherData?.main?.feels_like ?? "N/A"}
+						description={weatherData?.weather[0]?.description ?? "N/A"}
+						tempeture={weatherData?.main?.temp ?? "N/A"}
+						weatherIcon={weatherData?.weather[0]?.icon}
+					  />
+					  {weatherData && weatherData.wind && (
+						<WeatherDetails
+						  city={city}
+						  wind={unit === "metric" ? `${(weatherData.wind.speed * 3.6).toFixed(2)}` : `${weatherData.wind.speed}`}
+						  windUnit={unit === "metric" ? "Km/h" : "mph"}
+						  humidity={weatherData.main.humidity}
+						  visibility={(weatherData.visibility / 1000).toFixed(1)}
+						  pressure={weatherData.main.pressure}
+						/>
+					  )}
+				  </div>
+				) :
+				<div className="flex justify-center items-center py-6">
+					<span className="loading loading-ring loading-lg bg-customPrimary"></span>
+				</div>
+			  }
+		  </div>
+		  <WeatherMap lat={coordinates.lat} lon={coordinates.lon} />
 	  </div>
 	);
 }

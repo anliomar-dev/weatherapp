@@ -3,7 +3,7 @@ import {Wind, Droplets, Eye, WindArrowDown } from "lucide-react";
 function WeatherDetails({wind = 0, windUnit = 'Km/h',
 	                  humidity = 0, visibility = 0, pressure = 0 }) {
 	return (
-	  <div className="flex gap-10 flex-wrap my-4">
+	  <div className="flex gap-10 flex-wrap justify-center my-4">
 		  <div className="flex gap-2 items-center justify-center shadow-lg rounded-lg py-4 px-4">
 			  <div>
 				  <Wind size={40} className="dark:text-violet-300" />
