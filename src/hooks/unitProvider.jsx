@@ -13,20 +13,21 @@ export function UnitProvider({ children }) {
 		if (!savedUnit) {
 			// Si la clé n'existe pas, on la définit avec la valeur "metric"
 			savedUnit = "metric";
-			localStorage.setItem("currentUnit", JSON.stringify(savedUnit));
+			localStorage.setItem("currentUnit", savedUnit); // Enregistrer directement la chaîne de caractères
 		}
-		return JSON.parse(savedUnit);
+		return savedUnit; // Pas besoin de JSON.parse pour une simple chaîne
 	};
 
 	const [unit, setUnit] = useState(getInitialUnit);
 
 	const toggleUnit = (newUnit) => {
 		setUnit(newUnit);
+		localStorage.setItem("currentUnit", newUnit); // Sauvegarder la nouvelle unité
 	};
 
 	useEffect(() => {
-		// Sauvegarder l'unité dans le localStorage à chaque changement
-		localStorage.setItem("currentUnit", JSON.stringify(unit));
+		// Cette partie peut rester mais devient optionnelle si la sauvegarde est faite dans toggleUnit
+		localStorage.setItem("currentUnit", unit);
 	}, [unit]);
 
 	return (

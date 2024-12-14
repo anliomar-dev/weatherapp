@@ -8,32 +8,36 @@ function SearchBar() {
 	const searchBarRef = useRef();
 	const {darkMode} = useContext(ThemeContext);
 	const handleCityChange = () => {
-		changeCity(inputCity);  // Change city based on input
-		searchBarRef.current.value = ""; // Vide l'input après le changement
+		changeCity(inputCity);
+		searchBarRef.current.value = "";
 		setInputCity("")
 	};
 
 	return (
 	  <>
-		  <label className={`input flex items-center gap-2 ${darkMode ? 'bg-dark-input': 'bg-input'}`}>
-			  <Globe className={`${darkMode ? 'text-dark-foreground' : 'text-foreground'}`} />
+		  <label className={`input flex items-center gap-2 ${darkMode ? 'bg-dark-input' : 'bg-input'}`}>
+			  <Globe className={`${!darkMode ? 'text-dark-foreground' : 'text-foreground'}`}/>
 			  <input
-			    ref={searchBarRef}
+				ref={searchBarRef}
 				type="text"
-				className={``}
+				className="text-foreground dark:text-dark-accent-foreground"
 				placeholder="Enter city"
 				value={inputCity}
 				onChange={
-				  (e) => setInputCity(e.target.value)}
+					(e) => setInputCity(e.target.value)}
 			  />
 		  </label>
 		  <button
-		    className="btn bg-customPrimary text-white hover:bg-customPrimaryHover"
-		    onClick={handleCityChange}
-		    disabled={!inputCity}
+			className={`btn bg-customPrimary text-white hover:bg-customPrimaryHover 
+			border-customPrimary hover:border-customPrimaryHover
+            `}
+			onClick={handleCityChange}
+			disabled={!inputCity}
 		  >
-			  Change city
+			  Search
 		  </button>
+
+
 	  </>
 	);
 }

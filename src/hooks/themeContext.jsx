@@ -1,22 +1,28 @@
 import { createContext, useState, useEffect } from "react";
 
 export const ThemeContext = createContext({
-	"darkMode": false,
+	darkMode: false,
 	toggleTheme: () => {},
-})
-
+});
 
 export function ThemeProvider({ children }) {
-	const [darkMode, setDarkMode] = useState(false);
+	// Retrieve initial theme from localStorage and parse it as boolean
+	const [darkMode, setDarkMode] = useState(
+	  JSON.parse(localStorage.getItem("darkMode")) || false
+	);
+
 	const toggleTheme = () => {
-		setDarkMode(!darkMode);
+		setDarkMode((prevMode) => !prevMode);
 	};
 
-	// Utilisation de useEffect pour changer le background du body
 	useEffect(() => {
+		// Update the document class and save the current mode to localStorage
+		if (darkMode) {
+			document.documentElement.classList.add("dark");
+		} else {
+			document.documentElement.classList.remove("dark");
+		}
 		localStorage.setItem("darkMode", JSON.stringify(darkMode));
-		darkMode ? document.documentElement.classList.add("dark") :
-		  document.documentElement.classList.remove("dark");
 	}, [darkMode]);
 
 	return (

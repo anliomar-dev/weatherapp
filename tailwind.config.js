@@ -12,10 +12,6 @@ export default {
         // Couleurs par défaut (clair)
         background: 'hsl(0, 0%, 97.65%)',
         foreground: 'hsl(0, 0%, 12.55%)',
-        muted: 'hsl(0, 0%, 93.73%)',
-        'muted-foreground': 'hsl(0, 0%, 39.22%)',
-        popover: 'hsl(0, 0%, 98.82%)',
-        'popover-foreground': 'hsl(0, 0%, 12.55%)',
         card: 'hsl(0, 0%, 98.82%)',
         'card-foreground': 'hsl(0, 0%, 12.55%)',
         border: 'hsl(0, 0%, 84.71%)',
@@ -31,10 +27,6 @@ export default {
         // Couleurs pour le mode sombre
         'dark-background': 'hsl(0, 0%, 6.67%)',
         'dark-foreground': 'hsl(0, 0%, 93.33%)',
-        'dark-muted': 'hsl(0, 0%, 13.33%)',
-        'dark-muted-foreground': 'hsl(0, 0%, 70.59%)',
-        'dark-popover': 'hsl(0, 0%, 9.8%)',
-        'dark-popover-foreground': 'hsl(0, 0%, 93.33%)',
         'dark-card': 'hsl(0, 0%, 9.8%)',
         'dark-card-foreground': 'hsl(0, 0%, 93.33%)',
         'dark-border': 'hsl(44, 14%, 11%)',

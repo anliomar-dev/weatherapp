@@ -5,13 +5,13 @@ import {useContext} from "react";
 import UnitController from "./unitController.jsx";
 
 function Navbar() {
-	const {darkMode} = useContext(ThemeContext);
+	const {darkMode, toggleTheme} = useContext(ThemeContext);
 	return (
-	  <div className={`navbar rounded-2xl px-5 ${darkMode ? 'bg-dark-card': 'bg-background'}`}>
+	  <div className={`navbar rounded-2xl px-5 bg-transparent backdrop-blur-lg shadow-lg ${darkMode ? '': ''}`}>
 		  <div className="flex-1 gap-4">
 			  <SearchBar/>
 		  </div>
-		  <ThemeController/>
+		  <ThemeController toggleTheme={toggleTheme} />
 		  <UnitController />
 	  </div>
 	)

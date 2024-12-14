@@ -6,7 +6,7 @@ function UnitController(){
 	const {unit, toggleUnit} = useContext(UnitContext);
 	return (
 	  <div className="dropdown dropdown-hover dropdown-end ms-2">
-		  <div tabIndex={0} role="button" className="btn m-1">
+		  <div tabIndex={0} role="button" className="btn m-1 bg-secondary text-foreground dark:text-dark-foreground dark:bg-dark-secondary dark:border-dark-secondary">
 			  <ThermometerSun size={22}/>
 			  <span className="text-lg">{unit === "metric" ? "°C" : "°F"}</span>
 		  </div>
