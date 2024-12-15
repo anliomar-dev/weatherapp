@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .bg-light-theme{
-    background-image: url("public/bgNature.jpg");
+    background-image: url("/bgNature.jpg");
     background-attachment: fixed;
     background-size: cover;
     background-position: center center;
@@ -11,7 +11,7 @@
 }
 
 .bg-dark-theme{
-    background-image: url("public/bgNight.avif");
+    background-image: url("/bgNight.avif");
     background-attachment: fixed;
     background-size: cover;
     background-position: center center;

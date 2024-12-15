@@ -1,11 +1,12 @@
 
 export async function getCityCordinates(city) {
-	const url = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=56039a482b3949ba0b41d9e2a4d1405e&units=imperial`;
+	const appid = import.meta.env.VITE_API_KEY;
+	const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${appid}`;
 	try {
 		const response = await fetch(url);
 		const data = await response.json();
 		if (data.length !== 0) {
-			return {lat: data[0].lat, lon: data[0].lon};
+			return {lat: data?.coord?.lat, lon: data?.coord?.lon};
 		} else {
 			console.log("City could not be found");
 			return {lat: null, lon: null};
