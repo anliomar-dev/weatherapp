@@ -1,32 +1,53 @@
 import { createContext, useState, useEffect } from "react";
 
-// Créer le contexte avec une valeur par défaut
+
+/**
+ * Context for managing the unit of measurement (e.g., metric or imperial).
+ * Provides access to the current unit and a function to toggle between units.
+ *
+ * @typedef {Object} UnitContextType
+ * @property {string} unit - The current unit of measurement ("metric" or "imperial").
+ * @property {Function} toggleUnit - Function to toggle the unit between "metric" and "imperial".
+ */
 export const UnitContext = createContext({
 	unit: "metric",
 	toggleUnit: () => {},
 });
 
+
+/**
+ * UnitProvider component that provides the unit of measurement state
+ * and the function to toggle the unit via the `UnitContext`.
+ *
+ * This component should wrap the parts of the application that need access
+ * to the unit context.
+ *
+ * @param {Object} props - Component properties.
+ * @param {React.ReactNode} props.children - Child components that will
+ * have access to the UnitContext.
+ *
+ * @returns {React.Element} The wrapped children components with access to
+ * the unit context.
+ */
 export function UnitProvider({ children }) {
-	// Récupérer l'unité depuis localStorage, ou utiliser "metric" par défaut
+
 	const getInitialUnit = () => {
 		let savedUnit = localStorage.getItem("currentUnit");
 		if (!savedUnit) {
-			// Si la clé n'existe pas, on la définit avec la valeur "metric"
 			savedUnit = "metric";
-			localStorage.setItem("currentUnit", savedUnit); // Enregistrer directement la chaîne de caractères
+			localStorage.setItem("currentUnit", savedUnit);
 		}
-		return savedUnit; // Pas besoin de JSON.parse pour une simple chaîne
+		return savedUnit;
 	};
 
 	const [unit, setUnit] = useState(getInitialUnit);
 
 	const toggleUnit = (newUnit) => {
 		setUnit(newUnit);
-		localStorage.setItem("currentUnit", newUnit); // Sauvegarder la nouvelle unité
+		localStorage.setItem("currentUnit", newUnit);
 	};
 
 	useEffect(() => {
-		// Cette partie peut rester mais devient optionnelle si la sauvegarde est faite dans toggleUnit
 		localStorage.setItem("currentUnit", unit);
 	}, [unit]);
 

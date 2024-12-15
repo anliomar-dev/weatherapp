@@ -1,12 +1,34 @@
 import { createContext, useState, useEffect } from "react";
 
+/**
+ * Context for managing the theme (dark mode) state.
+ * Provides access to the current dark mode state and a function to toggle the theme.
+ *
+ * @typedef {Object} ThemeContextType
+ * @property {boolean} darkMode - The current dark mode state (true for dark mode, false for light mode).
+ * @property {Function} toggleTheme - Function to toggle the dark mode state.
+ */
 export const ThemeContext = createContext({
 	darkMode: false,
 	toggleTheme: () => {},
 });
 
+
+/**
+ * ThemeProvider component that provides the dark mode state and
+ * the function to toggle the theme via the `ThemeContext`.
+ *
+ * This component should wrap the parts of the application that need access
+ * to the theme context.
+ *
+ * @param {Object} props - Component properties.
+ * @param {React.ReactNode} props.children - Child components that will
+ * have access to the ThemeContext.
+ *
+ * @returns {React.Element} The wrapped children components with access to
+ * the theme context.
+ */
 export function ThemeProvider({ children }) {
-	// Retrieve initial theme from localStorage and parse it as boolean
 	const [darkMode, setDarkMode] = useState(
 	  JSON.parse(localStorage.getItem("darkMode")) || false
 	);

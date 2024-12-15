@@ -1,6 +1,16 @@
 import {getCityTime} from "../../utils.js";
 import {MapPinCheck} from "lucide-react";
 
+/**
+ * `WeatherCardHeader` is a component that displays the header for a weather card, which includes
+ * the current weather's timestamp and the city's name with a location icon.
+ *
+ * @param {Object} props - The component's props.
+ * @param {string} props.timezone - The timezone for the city, used to display the current time.
+ * @param {string} props.city - The name of the city.
+ * @returns {JSX.Element} A header section displaying the city name and current time.
+ */
+
 function WeatherCardHeader({ timezone, city }) {
 	return (
 	  <div className="flex justify-between items-start w-full px-6 py-2">

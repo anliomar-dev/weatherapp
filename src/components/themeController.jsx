@@ -1,5 +1,13 @@
 import {useContext} from "react";
 import {ThemeContext} from "../hooks/themeContext.jsx";
+
+/**
+ * `ThemeController` is a component that allows users to toggle between light and dark theme.
+ * It uses a checkbox input styled as a toggle switch and two SVG icons to represent the themes.
+ * The component uses the `toggleTheme` function from the `ThemeContext` to change the theme.
+ *
+ * @returns {JSX.Element} A toggle switch for controlling the theme with SVG icons for light and dark modes.
+ */
 function ThemeController() {
 	const { toggleTheme } = useContext(ThemeContext);
 	return (

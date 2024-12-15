@@ -1,5 +1,17 @@
 import {Wind, Droplets, Eye, WindArrowDown } from "lucide-react";
 
+/**
+ * `WeatherDetails` is a component that displays weather-related details such as wind speed, humidity,
+ * visibility, and pressure. It uses various icons to represent each detail and provides their values in a readable format.
+ *
+ * @param {Object} props - The component's props.
+ * @param {number} props.wind - The wind speed.
+ * @param {string} props.windUnit - The unit for wind speed (default is 'Km/h').
+ * @param {number} props.humidity - The humidity percentage.
+ * @param {number} props.visibility - The visibility distance in kilometers.
+ * @param {number} props.pressure - The atmospheric pressure in millibars.
+ * @returns {JSX.Element} A set of weather details displayed in cards.
+ */
 function WeatherDetails({wind = 0, windUnit = 'Km/h',
 	                  humidity = 0, visibility = 0, pressure = 0 }) {
 	return (
@@ -9,8 +21,8 @@ function WeatherDetails({wind = 0, windUnit = 'Km/h',
 				  <Wind size={40} className="dark:text-violet-300" />
 			  </div>
 			  <div className="flex flex-col">
-				  <span className="text-lg dark:text-dark-foreground">Wind</span>
-				  <div className="font-medium flex gap-1 dark:text-dark-foreground"><span>{wind} </span><span>{windUnit}</span></div>
+				  <span className="text-lg dark:text-white">Wind</span>
+				  <div className="font-medium flex gap-1 dark:text-white"><span>{wind} </span><span>{windUnit}</span></div>
 			  </div>
 		  </div>
 		  <div className="flex gap-3 items-center justify-center shadow-lg rounded-lg py-2 px-4">
@@ -18,8 +30,8 @@ function WeatherDetails({wind = 0, windUnit = 'Km/h',
 				  <Droplets size={40} className="dark:text-violet-300" />
 			  </div>
 			  <div className="flex flex-col">
-				  <span className="text-lg dark:text-dark-foreground">Humidity</span>
-				  <span className="font-medium dark:text-dark-foreground">{humidity} %</span>
+				  <span className="text-lg dark:text-white">Humidity</span>
+				  <span className="font-medium dark:text-white">{humidity} %</span>
 			  </div>
 		  </div>
 		  <div className="flex gap-3 items-center justify-center shadow-lg rounded-lg py-2 px-4">
@@ -27,8 +39,8 @@ function WeatherDetails({wind = 0, windUnit = 'Km/h',
 				  <Eye size={40} className="dark:text-violet-300" />
 			  </div>
 			  <div className="flex flex-col">
-				  <span className="text-lg dark:text-dark-foreground">Visibility</span>
-				  <span className="font-medium dark:text-dark-foreground">{visibility} Km</span>
+				  <span className="text-lg dark:text-white">Visibility</span>
+				  <span className="font-medium dark:text-white">{visibility} Km</span>
 			  </div>
 		  </div>
 		  <div className="flex gap-3 items-center justify-center shadow-lg rounded-lg py-2 px-4">
@@ -36,8 +48,8 @@ function WeatherDetails({wind = 0, windUnit = 'Km/h',
 				  <WindArrowDown size={40} className="dark:text-violet-300" />
 			  </div>
 			  <div className="flex flex-col">
-				  <span className="text-lg dark:text-dark-foreground">Pressure</span>
-				  <span className="font-medium dark:text-dark-foreground">{pressure} mb</span>
+				  <span className="text-lg dark:text-white">Pressure</span>
+				  <span className="font-medium dark:text-white">{pressure} mb</span>
 			  </div>
 		  </div>
 	  </div>

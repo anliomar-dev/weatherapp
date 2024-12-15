@@ -36,8 +36,11 @@
     z-index: 2000 !important;
 }
 
-.menuSmallScreen{
+.MenuSmallScreen, .menusmall-container {
     z-index: 3000 !important;
+}
+.overlay{
+    z-index: 2200 !important;
 }
 
 @media screen and (min-width: 768px) {

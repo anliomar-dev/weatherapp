@@ -44,7 +44,7 @@ function SearchBar() {
 			  <input
 				ref={searchBarRef}
 				type="text"
-				className="text-foreground dark:text-dark-accent-foreground"
+				className="text-foreground dark:text-white"
 				placeholder="Enter city"
 				value={inputCity}
 				onChange={
@@ -66,7 +66,7 @@ function SearchBar() {
 		  {menuIsOpen && (
 		    <>
 			    {createPortal(
-			      <div className="flex justify-center px-10 w-full">
+			      <div className="flex justify-center w-full menusmall-container">
 				      <Menusmallscreen onClick={handleShowMenu} darkMode={darkMode} />
 			      </div>,
 				  document.body
