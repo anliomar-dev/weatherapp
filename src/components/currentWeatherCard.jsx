@@ -1,5 +1,6 @@
 import {useContext, useEffect, useState} from "react";
 import useApi from "../hooks/useApi.jsx";
+import {motion} from "motion/react";
 
 import { LocationContext } from "../hooks/locationProvider.jsx";
 import {ThemeContext} from "../hooks/themeContext.jsx";
@@ -10,7 +11,7 @@ import WeatherMainInfos from "./WeatherMainInfos.jsx";
 import WeatherCardHeader from "./WeatherCardHeader.jsx";
 import Alert from "./alert.jsx";
 
-import { getCityCordinates } from "../../utils.js";
+import {getCityCordinates, variantsWeatherCard} from "../../utils.js";
 import WeatherMap from "./WeatherMap.jsx";
 
 
@@ -56,8 +57,14 @@ function CurrentWeatherCard() {
 
 	return (
 	  <div className="flex flex-col lg:flex-row gap-4 pt-6">
-		  <div
-			className={`lg:w-[800px] w-full weather-card rounded-lg p-5 bg-white/10 backdrop-blur-lg shadow-lg ${darkMode ? '' : ''}`}>
+		  <motion.div
+			className={`lg:w-[800px] w-full weather-card rounded-lg p-5 bg-white/10 
+			backdrop-blur-lg shadow-lg ${darkMode ? '' : ''}`}
+			initial="hidden"
+			whileInView="visible"
+			variants={variantsWeatherCard}
+			viewport={{ once: true, amount: 0.3 }}>
+
 			  {!loading ? (
 				  <div className="currentWeatherCard">
 					  <WeatherCardHeader
@@ -87,7 +94,7 @@ function CurrentWeatherCard() {
 					<span className="loading loading-ring loading-lg bg-customPrimary"></span>
 				</div>
 			  }
-		  </div>
+		  </motion.div>
 		  <WeatherMap lat={coordinates.lat} lon={coordinates.lon} />
 	  </div>
 	);

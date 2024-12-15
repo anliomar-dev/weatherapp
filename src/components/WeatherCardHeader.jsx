@@ -13,7 +13,7 @@ import {MapPinCheck} from "lucide-react";
 
 function WeatherCardHeader({ timezone, city }) {
 	return (
-	  <div className="flex flex-col gap-y-6 md:flex-row  justify-between items-start w-full px-6 py-2">
+	  <div className="flex flex-col gap-y-6 650:flex-row  justify-between items-start w-full px-6 py-2">
 		  <div className="flex flex-col">
 			  <p className="text-2xl dark:text-neutral-200">Current weather</p>
 			  <p className="text-lg font-medium text-amber-200 ">

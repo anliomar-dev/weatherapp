@@ -1,6 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { useEffect } from 'react';
-
+import {motion} from "motion/react";
+import {variantsMap} from "../../utils.js";
 /**
  * `WeatherMap` component renders a marker on the map at the given latitude and longitude.
  * When the latitude or longitude changes, the map view is updated to center on the new position.
@@ -38,13 +39,19 @@ function WeatherMap({ lat, lon }) {
  */
 function WeatherMapContainer({ lat, lon }) {
 	return (
-	  <MapContainer center={[lat, lon]} zoom={13} scrollWheelZoom={true} className="w-full lg:w-[450px] h-[350px] map">
-		  <TileLayer
-			attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-			url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-		  />
-		  <WeatherMap lat={lat} lon={lon} />
-	  </MapContainer>
+	  <motion.div className="w-full lg:w-[450px] h-[350px] map"
+	      initial="hidden"
+	      whileInView="visible"
+	      variants={variantsMap}
+	      viewport={{ once: true, amount: 0.3 }}>
+		  <MapContainer center={[lat, lon]} zoom={13} scrollWheelZoom={true} className="w-full h-full">
+			  <TileLayer
+			    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+			    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+			  />
+			  <WeatherMap lat={lat} lon={lon} />
+		  </MapContainer>
+	  </motion.div>
 	);
 }
 

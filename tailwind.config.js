@@ -22,7 +22,8 @@ export default {
         'dark-secondary': 'hsl(28.5, 64.52%, 12.16%)',
       },
       screens: {
-        '1420': '1420px', // Définition de la taille d'écran personnalisée
+        '1420': '1420px',
+        '650': '650px',
       },
     },
   },
