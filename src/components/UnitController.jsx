@@ -13,7 +13,7 @@ function UnitController(){
 	return (
 	  <div className="dropdown dropdown-hover dropdown-end ms-2">
 		  <div tabIndex={0} role="button"
-		       className="btn m-1 bg-secondary text-foreground dark:text-whitea
+		       className="btn m-1 bg-secondary text-foreground dark:text-white
 		       dark:bg-dark-secondary dark:border-dark-secondary z-[1000]"
 		  >
 			  <ThermometerSun size={22}/>

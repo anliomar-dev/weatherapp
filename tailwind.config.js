@@ -21,6 +21,9 @@ export default {
         'dark-primary-foreground': 'hsl(29.51, 0%, 100%)',
         'dark-secondary': 'hsl(28.5, 64.52%, 12.16%)',
       },
+      screens: {
+        '1420': '1420px', // Définition de la taille d'écran personnalisée
+      },
     },
   },
   darkMode: 'class',

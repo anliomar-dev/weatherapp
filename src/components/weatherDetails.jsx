@@ -15,8 +15,9 @@ import {Wind, Droplets, Eye, WindArrowDown } from "lucide-react";
 function WeatherDetails({wind = 0, windUnit = 'Km/h',
 	                  humidity = 0, visibility = 0, pressure = 0 }) {
 	return (
-	  <div className="flex gap-10 flex-wrap justify-center my-4">
-		  <div className="flex gap-2 items-center justify-center shadow-lg rounded-lg py-4 px-4">
+	  <div className="grid grid-cols-1 md:grid-cols-2 1420:grid-cols-4 gap-6 flex-wrap justify-center my-4">
+		  <div className="flex bg-white dark:bg-gradient-to-r dark:from-blue-950 dark:to-blue-800
+               gap-2 items-center justify-center shadow-lg rounded-lg py-4 px-4">
 			  <div>
 				  <Wind size={40} className="dark:text-violet-300" />
 			  </div>
@@ -25,7 +26,8 @@ function WeatherDetails({wind = 0, windUnit = 'Km/h',
 				  <div className="font-medium flex gap-1 dark:text-white"><span>{wind} </span><span>{windUnit}</span></div>
 			  </div>
 		  </div>
-		  <div className="flex gap-3 items-center justify-center shadow-lg rounded-lg py-2 px-4">
+		  <div className="flex gap-3 items-center justify-center bg-white dark:bg-gradient-to-r
+		  dark:from-blue-950 dark:to-blue-800 shadow-lg rounded-lg py-2 px-4">
 			  <div>
 				  <Droplets size={40} className="dark:text-violet-300" />
 			  </div>
@@ -34,7 +36,8 @@ function WeatherDetails({wind = 0, windUnit = 'Km/h',
 				  <span className="font-medium dark:text-white">{humidity} %</span>
 			  </div>
 		  </div>
-		  <div className="flex gap-3 items-center justify-center shadow-lg rounded-lg py-2 px-4">
+		  <div className="flex gap-3 items-center justify-center bg-white dark:bg-gradient-to-r
+		  dark:from-blue-950 dark:to-blue-800 dark:bg-blue-950 shadow-lg rounded-lg py-2 px-4">
 			  <div>
 				  <Eye size={40} className="dark:text-violet-300" />
 			  </div>
@@ -43,7 +46,8 @@ function WeatherDetails({wind = 0, windUnit = 'Km/h',
 				  <span className="font-medium dark:text-white">{visibility} Km</span>
 			  </div>
 		  </div>
-		  <div className="flex gap-3 items-center justify-center shadow-lg rounded-lg py-2 px-4">
+		  <div className="flex gap-3 items-center justify-center bg-white dark:bg-gradient-to-r
+		  dark:from-blue-950 dark:to-blue-800 dark:bg-blue-950 shadow-lg rounded-lg py-2 px-4">
 			  <div>
 				  <WindArrowDown size={40} className="dark:text-violet-300" />
 			  </div>

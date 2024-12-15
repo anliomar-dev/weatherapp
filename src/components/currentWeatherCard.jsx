@@ -57,7 +57,7 @@ function CurrentWeatherCard() {
 	return (
 	  <div className="flex flex-col lg:flex-row gap-4 pt-6">
 		  <div
-			className={`lg:w-[800px] w-full weather-card rounded-lg p-5 bg-transparent backdrop-blur-lg shadow-lg ${darkMode ? '' : ''}`}>
+			className={`lg:w-[800px] w-full weather-card rounded-lg p-5 bg-white/10 backdrop-blur-lg shadow-lg ${darkMode ? '' : ''}`}>
 			  {!loading ? (
 				  <div className="currentWeatherCard">
 					  <WeatherCardHeader
